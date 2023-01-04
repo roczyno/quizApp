@@ -1,0 +1,69 @@
+.trivial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+  gap: 10px;
+
+  .questions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    .question {
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &.correct {
+        animation: correct 3s ease forwards;
+      }
+      @keyframes correct {
+        0%,
+        22%,
+        42% {
+          background-color: mediumblue;
+        }
+        20%,
+        40%,
+        60% {
+          background: linear-gradient(#0e0124, #22074d);
+        }
+        62%,
+        100% {
+          background-color: greenyellow;
+        }
+      }
+
+      &.wrong {
+        animation: wrong 3s forwards ease;
+      }
+      @keyframes wrong {
+        0%,
+        22%,
+        42% {
+          background: mediumblue;
+        }
+        20%,
+        40%,
+        60% {
+          background: linear-gradient(#0e0124, #22074d);
+        }
+        62%,
+        100% {
+          background: crimson;
+        }
+      }
+      &:hover,
+      .active {
+        background-color: blue;
+      }
+    }
+  }
+}
