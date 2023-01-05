@@ -8,7 +8,7 @@ const App = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
 
-  const [score, setScore] = useState("0");
+  const [score, setScore] = useState(0);
 
   const data = [
     {
@@ -88,7 +88,9 @@ const App = () => {
             <div className="timer-container">
               <span className="text">Time</span>
               <span className="number">
-                <Timer setStop={setStop} questionNumber={questionNumber} />
+                {!stop && (
+                  <Timer setStop={setStop} questionNumber={questionNumber} />
+                )}
               </span>
             </div>
           </div>
@@ -96,7 +98,9 @@ const App = () => {
 
           <div className="center">
             {stop ? (
-              <h1>Your Score is {score}</h1>
+              <div>
+                <h1>Your Score is {score}</h1>
+              </div>
             ) : (
               <>
                 <Trivial
@@ -104,6 +108,7 @@ const App = () => {
                   setStop={setStop}
                   setQuestionNumber={setQuestionNumber}
                   questionNumber={questionNumber}
+                  setScore={setScore}
                 />
               </>
             )}

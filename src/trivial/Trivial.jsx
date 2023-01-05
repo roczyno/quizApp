@@ -2,7 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import "./trivial.scss";
 
-const Trivial = ({ data, setStop, questionNumber, setQuestionNumber }) => {
+const Trivial = ({
+  data,
+  setStop,
+  questionNumber,
+  setQuestionNumber,
+  setScore,
+}) => {
   const [question, setQuestion] = useState(null);
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -30,7 +36,9 @@ const Trivial = ({ data, setStop, questionNumber, setQuestionNumber }) => {
     delay(6000, () => {
       if (a.correct) {
         setQuestionNumber((prev) => prev + 1);
+
         setSelectedAnswer(null);
+        setScore((prev) => prev + 10);
       } else {
         setStop(true);
       }
