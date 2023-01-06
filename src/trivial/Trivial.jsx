@@ -36,7 +36,6 @@ const Trivial = ({
     delay(6000, () => {
       if (a.correct) {
         setQuestionNumber((prev) => prev + 1);
-
         setSelectedAnswer(null);
         setScore((prev) => prev + 10);
       } else {
