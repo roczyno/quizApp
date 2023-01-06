@@ -1,5 +1,5 @@
 import "./register.scss";
-
+import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div className="register">
@@ -12,7 +12,12 @@ const Register = () => {
           <input type="password" name="" placeholder="Password" />
           <input type="password" name="" placeholder="Confirm Password" />
           <button>Sign Up</button>
-          <span>dont have an account? Login here</span>
+          <span>
+            dont have an account?{" "}
+            <Link style={{ textDecoration: "none" }} to="/login">
+              Login here
+            </Link>
+          </span>
         </form>
       </div>
     </div>
