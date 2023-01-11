@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { signInAuthUserWithEmailAndPassword } from "../../util/firebase";
+import "./login.scss";
 
 const defaultFormFields = {
   email: "",
@@ -11,6 +13,8 @@ const Login = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  const navigate = useNavigate();
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -19,7 +23,12 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      navigate("/");
+
       resetFormFields();
     } catch (error) {
       switch (error.code) {

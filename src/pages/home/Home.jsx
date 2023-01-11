@@ -1,8 +1,10 @@
 import "./home.scss";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Trivial from "../../trivial/Trivial";
 import Timer from "../../components/Timer";
+import { UserContext } from "../../context/user.context";
+import { signOutUser } from "../../util/firebase";
 
 const Home = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -10,6 +12,11 @@ const Home = () => {
 
   const [score, setScore] = useState(0);
 
+  const { currentUser } = useContext(UserContext);
+
+  const handleSignOut = async () => {
+    await signOutUser();
+  };
   const data = [
     {
       id: 1,
@@ -84,7 +91,11 @@ const Home = () => {
       <div className="container">
         <div className="wrapper">
           <div className="top">
-            <span>Quiz App</span>
+            <div className="user">
+              <h1>{currentUser.displayName}</h1>
+              {currentUser && <span onClick={handleSignOut}>Logout</span>}
+            </div>
+
             <div className="timer-container">
               <span className="text">Time</span>
               <span className="number">

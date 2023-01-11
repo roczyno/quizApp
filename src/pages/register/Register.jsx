@@ -4,7 +4,7 @@ import {
 } from "../../util/firebase";
 
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -19,6 +19,8 @@ const Register = () => {
   const [error, setError] = useState(false);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -37,7 +39,7 @@ const Register = () => {
         email,
         password
       );
-
+      navigate("/");
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
